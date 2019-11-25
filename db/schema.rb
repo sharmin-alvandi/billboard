@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_11_25_182420) do
 
   create_table "advertisements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -19,6 +20,12 @@ ActiveRecord::Schema.define(version: 2019_11_25_182420) do
     t.string "description"
     t.string "image_url"
     t.integer "collection_id"
+=======
+ActiveRecord::Schema.define(version: 2019_11_25_172810) do
+
+  create_table "collections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title"
+>>>>>>> 99e9986ad464b444525b25dbda6226076cdf2a56
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
