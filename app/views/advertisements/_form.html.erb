@@ -17,8 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :store_id %>
-    <%= form.number_field :store_id %>
+    <%= form.label :store_title %>
+    <%= form.collection_select(:store_id, Store.all, :id, :title) %>
   </div>
 
   <div class="field">
@@ -37,8 +37,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :collection_id %>
-    <%= form.number_field :collection_id %>
+    <%= form.label :collection_title%>
+    <%= form.collection_select(:collection_id, Collection.all, :id, :title) %>
   </div>
 
   <div class="actions">
