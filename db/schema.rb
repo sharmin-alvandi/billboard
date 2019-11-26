@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 2019_11_25_182420) do
     t.string "description"
     t.string "image_url"
     t.integer "collection_id"
-ActiveRecord::Schema.define(version: 2019_11_25_172810) do
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "collections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
