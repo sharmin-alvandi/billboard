@@ -1,0 +1,20 @@
+// Place all the styles related to the Billboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  border: 1px solid black;
+}
+ul li {
+  display: inline-block;
+}
+label {
+  display: inline;
+}
+li {
+  padding-right: 10px;
+}

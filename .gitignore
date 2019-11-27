@@ -30,3 +30,9 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+
+#Ignore Gemfile Gemlock and dev.yml for a while unless we install a new gem
+/Gemfile
+/Gemfile.lock
+/dev.yml

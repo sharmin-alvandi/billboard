@@ -1,21 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Advertisements</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Store</th>
-      <th>Product url</th>
-      <th>Description</th>
-      <th>Image url</th>
-      <th>Collection</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h1>Shopify Centeral Discount Billboard</h1>
+<header>
+  <nav>
+    <ul>
+      <li>Admins</li>
+      <li>
+        <%= form_with(url: "billboard/index") do |form| %>
+          <ul>
+            <li>
+          <!--<div class="search">-->
+              <%= form.label :Search %>
+            </li>
+            <li>
+              <%= form.collection_select(:collection_id, Collection.all, :id, :title) %>
+            </li>
+          </ul>
+          <!--</div>-->
+          <!--<div class="actions">
+            <%= form.submit %>
+          </div>-->
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+</header>
+<tbody>
     <% @advertisements.each do |advertisement| %>
       <tr>
         <td><%= advertisement.title %></td>
@@ -33,7 +41,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Advertisement', new_advertisement_path %>
