@@ -23,7 +23,7 @@
         <td><%= @store.title %></td>
         <td><a href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a></td>
         <td><%= advertisement.description %></td>
-        <td><%= image_tag(advertisement.image_url, size: "160x100", alt: "Edit Entry")%></td>
+        <td><%= image_tag(advertisement.image_url, size: "160x100", alt: "Ad Image")%></td>
         <% @collection = Collection.find(advertisement.collection_id)%>
         <td><%= @collection.title %></td>
         <td><%= link_to 'Show', advertisement %></td>
