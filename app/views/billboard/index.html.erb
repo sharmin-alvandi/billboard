@@ -1,4 +1,4 @@
-<h1>Shopify Centeral Discount Billboard <%=@collection_id%></h1>
+<h1 class="text-center mb-5 mt-3">Shopify Centeral Discount Billboard <%=@collection_id%></h1>
 <header>
   <nav>
 
@@ -14,7 +14,7 @@
 </div>-->
 
     <ul>
-      <li>Admins</li>
+      <li><%= link_to 'Admins', advertisements_path %></li>
       <li>
         <%= form_with(url: billboard_index_path, method: "get", local: true) do |form| %>
           <ul>
@@ -48,9 +48,10 @@
         <td><%= image_tag(advertisement.image_url, size: "160x100", alt: "Ad Image")%></td>
         <% @collection = Collection.find(advertisement.collection_id)%>
         <td><%= @collection.title %></td>
-        <td><%= link_to 'Show', advertisement %></td>
+        <!--<td><%= link_to 'Show', advertisement %></td>
         <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
         <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
       </tr>
     <% end %>
   </tbody>
