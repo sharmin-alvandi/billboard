@@ -1,6 +1,8 @@
-<h1 class="text-center mb-5 mt-3">Shopify Centeral Discount Billboard <%=@collection_id%></h1>
+
+<p id="notice"><%= notice %></p>
+<h1 class="text-center">Shopify Centeral Discount Billboard <%=@collection_id%></h1>
 <header>
-  <nav>
+  
 
   <!--<div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,46 +15,89 @@
   </div>
 </div>-->
 
+
+
+
+
+  <!-- <nav>
     <ul>
       <li><%= link_to 'Admins', advertisements_path %></li>
       <li>
         <%= form_with(url: billboard_index_path, method: "get", local: true) do |form| %>
           <ul>
             <li>
-          <!--<div class="search">
-              <%= form.label :Search %>-->
             </li>
             <li>
               <%= form.collection_select(:collection_id, Collection.all, :id, :title, { prompt: 'All Collections' } ) %>
-              <%= submit_tag "search" %>
+              <%= form.submit "search" %>
             </li>
-          </ul>
-          <!--</div>-->
-          <!--<div class="actions">
-            <%= form.submit %>
-          </div>-->
+      </ul>
+          
         <% end %>
       </li>
     </ul>
-  </nav>
-</header>
-<table>
-<tbody>
-    <% @advertisements.each do |advertisement| %>
-      <tr>
-        <td><%= advertisement.title %></td>
-        <% @store = Store.find(advertisement.store_id)%>
-        <td><%= @store.title %></td>
-        <td><a href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a></td>
-        <td><%= advertisement.description %></td>
-        <td><%= image_tag(advertisement.image_url, size: "160x100", alt: "Ad Image")%></td>
-        <% @collection = Collection.find(advertisement.collection_id)%>
-        <td><%= @collection.title %></td>
-        <!--<td><%= link_to 'Show', advertisement %></td>
-        <td><%= link_to 'Edit', edit_advertisement_path(advertisement) %></td>
-        <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        -->
-      </tr>
+  </nav>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="#">logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+        <%= link_to 'Admins', advertisements_path, :class => 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <!--<a class="nav-link" href="#">Link</a>-->
+       
+      </li>
+    </ul>
+     <%= form_with(url: billboard_index_path, method: "get", :class => 'form-inline my-2 my-lg-0', local: true) do |form| %>
+       <%= form.collection_select(:collection_id, Collection.all, :id, :title, { prompt: 'All Collections' }, :class => 'form-control mr-sm-2' ) %>
+       <%= form.submit "search", :class => 'btn btn-outline-success my-2 my-sm-0' %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</nav>
+
+</header>
+<!--<table>
+<tbody>-->
+<div class="container">
+  <div class="row card-deck">
+    <% @advertisements.each do |advertisement| %>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <div class="card">
+          <div class="text-center">
+            <%= image_tag(advertisement.image_url, width:'100%', height:'auto', alt: "Ad Image", :class => 'card-image-top')%>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              <%= advertisement.title%>
+            </h5>
+            <div class="card-text">
+              <p class="truncate"><%= advertisement.description %></p>
+              <p class="text-center">
+                <a class="btn btn-success" href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a>
+              </p>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <small>
+              <% @store = Store.find(advertisement.store_id)%>
+              <%= @store.title %>
+            </small>
+            <small class="d-inline-block float-right">
+              <% @collection = Collection.find(advertisement.collection_id)%>
+              <%= @collection.title %>
+            </small>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+  <!--</tbody>
+</table>-->
