@@ -41,6 +41,11 @@
     <%= form.collection_select(:collection_id, Collection.all, :id, :title) %>
   </div>
 
+  <div class="field">
+    <%= form.label :expiry_date %>
+    <%= form.text_field :expiry_date, data:{ provide:'datepicker' } %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

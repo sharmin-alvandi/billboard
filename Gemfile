@@ -55,6 +55,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'shopify-cloud', source: 'https://packages.shopify.io/shopify/gems'
 
-#Adds support for Bootstrap 4.3
+# Adds support for Bootstrap 4.3
 gem 'bootstrap', '~> 4.3'
 gem 'jquery-rails'
+
+# Date picker
+gem 'bootstrap-datepicker-rails'
