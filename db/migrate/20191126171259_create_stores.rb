@@ -14,6 +14,9 @@ class CreateStores < ActiveRecord::Migration[6.0]
       t.string :product_url
       t.string :description
       t.string :image_url
+      t.datetime :effective_date
+      t.datetime :expiration_date
+      t.active :boolean
       # t.integer :collection_id
       t.belongs_to :collection, index: true
 

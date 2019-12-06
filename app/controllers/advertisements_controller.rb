@@ -40,16 +40,20 @@ class AdvertisementsController < ApplicationController
     # count = @advertisements.count
     
       respond_to do |format|
+        
         if count < 3
           @advertisement = Advertisement.new(advertisement_params)
-          if @advertisement.save
-            format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.'}
-            format.json { render :show, status: :created, location: @advertisement }
+          if !@advertisement.valid?
+            format.html { redirect_to @advertisement, notice: @advertisement.errors.messages }
           else
-            format.html { render :new }
-            format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+            if @advertisement.save
+              format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.'}
+              format.json { render :show, status: :created, location: @advertisement }
+            else
+              format.html { render :new }
+              format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+            end
           end
-      
         else
           
           # @store_id = advertisement_params[:store_id]
@@ -104,6 +108,6 @@ class AdvertisementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advertisement_params
-      params.require(:advertisement).permit(:title, :store_id, :product_url, :description, :image_url, :collection_id)
+      params.require(:advertisement).permit(:title, :store_id, :product_url, :description, :image_url, :collection_id, :effective_date, :expiration_date, :active)
     end
 end
