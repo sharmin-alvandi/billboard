@@ -61,3 +61,6 @@ gem 'jquery-rails'
 
 # Date picker
 gem 'bootstrap-datepicker-rails'
+
+#Schedule frequent jobs
+gem 'whenever', require: false

@@ -14,22 +14,22 @@
 
   <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, :class => 'form-control' %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :product_url %>
-    <%= form.text_field :product_url, :class => 'form-control' %>
+    <%= form.text_field :product_url, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_field :description, :class => 'form-control' %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :image_url, 'Image' %>
-    <%= form.text_field :image_url, :class => 'form-control' %>
+    <%= form.text_field :image_url, class: 'form-control' %>
   </div>
 
   <!--<div class="form-group">
@@ -39,26 +39,26 @@
 
   <div class="form-group">
     <%= form.label :effective_date %>
-    <%= form.text_field :effective_date, data:{ provide:'datepicker',  date_format:'yyyy-mm-dd'}, :class => 'form-control' %>
+    <%= form.text_field :effective_date, data:{ provide: 'datepicker',  date_format: 'yyyy-mm-dd'}, class: 'form-control', value: "#{form.object.effective_date.strftime("%Y-%m-%d") unless form.object.new_record?}" %>
   </div>
 
   <div class="form-group">
     <%= form.label :expiration_date %>
-    <%= form.text_field :expiration_date, data:{ provide:'datepicker',  date_format:'yyyy-mm-dd'}, :class => 'form-control'%>
+    <%= form.text_field :expiration_date, data:{ provide: 'datepicker',  date_format: 'yyyy-mm-dd'}, class: 'form-control', value: "#{form.object.expiration_date.strftime("%Y-%m-%d") unless form.object.new_record?}" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :collection_title%>
-    <%= form.collection_select(:collection_id, Collection.all, :id, :title, {:class => 'form-control'}) %>
+    <%= form.label :collection_title%><br>
+    <%= form.collection_select(:collection_id, Collection.all, :id, :title, { :class => 'form-control'}) %>
   </div>
 
   <div class="form-group">
-    <%= form.label :store_id, 'Store Name' %>
-    <%= form.collection_select(:store_id, Store.all, :id, :title, {:class => 'form-control'}) %>
+    <%= form.label :store_id, 'Store Name' %><br>
+    <%= form.collection_select(:store_id, Store.all, :id, :title, { :class => 'form-control'}) %>
   </div>
 
-  <div class="">
-    <%= form.submit :submit, :class => 'btn btn-secondary' %>
+  <div>
+    <%= form.submit :submit, class: 'btn btn-secondary' %>
   </div>
 <% end %>
 

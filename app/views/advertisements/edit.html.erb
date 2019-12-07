@@ -1,6 +1,13 @@
-<h1>Editing Advertisement</h1>
 
-<%= render 'form', advertisement: @advertisement %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1">
+      <h1 class="display-5">Editing Advertisement</h1>
 
-<%= link_to 'Show', @advertisement %> |
-<%= link_to 'Back', advertisements_path %>
+      <%= render 'form', advertisement: @advertisement %>
+
+      <%= link_to 'Show', @advertisement %> |
+      <%= link_to 'Back', advertisements_path %>
+    </div>
+  </div>
+</div>

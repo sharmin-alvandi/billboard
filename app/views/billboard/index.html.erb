@@ -68,7 +68,7 @@
 <div class="container" id="main">
   <div class="row card-deck">
     <% @advertisements.each do |advertisement| %>
-      <% if advertisement.effective_date >= Date.today && advertisement.expiration_date >= Date.today%>
+      <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today%>
       <div class="col-sm-12 col-md-4 col-lg-3">
         <div class="card">
           <div class="text-center">
@@ -90,7 +90,7 @@
               <% @store = Store.find(advertisement.store_id)%>
               <%= @store.title %>
             </small>
-            <small class="d-inline-block float-right">
+            <small class="d-inline-block">
               Expiry Date:
               <%= advertisement.expiration_date.strftime('%Y-%m-%d')%>
               <!--<% @collection = Collection.find(advertisement.collection_id)%>
