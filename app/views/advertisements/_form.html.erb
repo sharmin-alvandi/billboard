@@ -1,9 +1,8 @@
 
 <%= form_with(model: advertisement, local: true) do |form| %>
   <% if advertisement.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="text-danger">
       <h2><%= pluralize(advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
-
       <ul>
         <% advertisement.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -49,12 +48,12 @@
 
   <div class="form-group">
     <%= form.label :collection_title%><br>
-    <%= form.collection_select(:collection_id, Collection.all, :id, :title, { :class => 'form-control'}) %>
+    <%= form.collection_select(:collection_id, Collection.all, :id, :title, { class: 'form-control'}) %>
   </div>
 
   <div class="form-group">
     <%= form.label :store_id, 'Store Name' %><br>
-    <%= form.collection_select(:store_id, Store.all, :id, :title, { :class => 'form-control'}) %>
+    <%= form.collection_select(:store_id, Store.all, :id, :title, { class: 'form-control'}) %>
   </div>
 
   <div>

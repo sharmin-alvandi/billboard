@@ -18,7 +18,18 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-
-every 1.day at: Time.zone.parse('00:01 am') do
-  runner "Advertisement.remove_expired_ads" 
+# require File.expand_path('../config/environment', __dir__)
+# ENV.each { |k, v| env(k, v) }
+set :environment, "development"
+set :bundle_command, 'bundle exec'
+env :PATH, ENV['PATH']
+set :job_template, nil
+job_type :runner,  "bash -l -c cd :path && :bundle_command bin/rails runner -e :environment ':task' :output"
+# job_type :runner,  "cd :path && :bundle_command rails runner -e :environment ':task' :output"
+set :output, "log/cron_log.log"
+# env :PATH, ENV['PATH']
+set :environment, "development"
+every 2.minutes do
+  runner "Advertisement.remove_expired_ads"
+ 
 end

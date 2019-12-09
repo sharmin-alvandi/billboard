@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :advertisements do
     collection do
-      get :search_store 
+      get :search_store
     end
   end
   # get 'store_ads', to: 'advertisements#store_ads'

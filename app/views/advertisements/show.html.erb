@@ -7,7 +7,9 @@
 
 <p>
   <strong>Store:</strong>
-  <%= @advertisement.store_id %>
+  <% id = @advertisement.store_id%>
+  <% @store = Store.find(id)%>
+  <%= @store.title %>
 </p>
 
 <p>
@@ -21,14 +23,29 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
+  <strong>Effective Date:</strong>
+  <%= @advertisement.effective_date.strftime('%Y-%m-%d') %>     
+</p>
+
+<p>
+  <strong>Exiration Date:</strong>
+  <%= @advertisement.expiration_date.strftime('%Y-%m-%d') %>
+</p>
+
+<p>
+  <strong>Image:</strong>
   <%= @advertisement.image_url %>
 </p>
 
 <p>
   <strong>Collection:</strong>
-  <%= @advertisement.collection_id%>
+  <% id = @advertisement.collection_id%>
+  <% @collection = Collection.find(id)%>
+  <%= @collection.title %>
+ 
 </p>
 
-<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
-<%= link_to 'Back', advertisements_path %>
+<%= link_to 'Edit', edit_advertisement_path(@advertisement), class: 'btn btn-warning' %>
+<%= link_to 'Destroy', @advertisement, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+<!--<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
+<%= link_to 'Back', advertisements_path %>-->

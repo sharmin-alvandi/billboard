@@ -45,8 +45,8 @@ class AdvertisementsController < ApplicationController
         if Advertisement.max_ads_reached?(store_id: store_id)
           # @store_id = advertisement_params[:store_id]
           # @advertisements2 = Advertisement.where("store_id = ?", @store_id)
-          format.html { redirect_to search_store_advertisements_url(store_id: store_id), notice: 'More than three ads are not allowed.' }
-          # format.html { redirect_to billboard_index_url, notice: 'More than three ads are not allowed.'}
+          format.html { redirect_to search_store_advertisements_url(store_id: store_id), notice: 'The store has already reached the maximum number of ads.' }
+          # format.html { redirect_to billboard_index_url, notice: 'The store has already reached the maximum number of ads'}
           format.json { head :no_content }
           # return
         else
