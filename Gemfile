@@ -64,3 +64,5 @@ gem 'bootstrap-datepicker-rails'
 
 #Schedule frequent jobs
 gem 'whenever', require: false
+
+gem 'bcrypt'

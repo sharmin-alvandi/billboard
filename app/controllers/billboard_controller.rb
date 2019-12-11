@@ -1,4 +1,7 @@
 class BillboardController < ApplicationController
+
+  skip_before_action :authorized, only: [:index, :search]
+
   def index
     @collections = Collection.all
     @advertisements = Advertisement.all

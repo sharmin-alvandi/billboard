@@ -25,7 +25,11 @@
             <li class="nav-item">
               <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
               <% if current_page?(billboard_index_url) %>
-                <%= link_to 'Login', advertisements_url, class: 'nav-link' %>
+                <% if !logged_in? %>
+                  <%= link_to 'Login', sessions_welcome_url, class: 'nav-link' %>
+                <% else %>
+                  <%= link_to 'Logout', logout_url, method: :delete, class: 'nav-link' %>
+                <% end %>
               <% elsif current_page?(advertisements_url) %>
                 <%= link_to 'New Advertisement', new_advertisement_url, class: 'nav-link' %>
               <% else %>
