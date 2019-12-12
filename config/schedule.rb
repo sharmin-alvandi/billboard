@@ -22,6 +22,7 @@
 # ENV.each { |k, v| env(k, v) }
 set :environment, "development"
 set :bundle_command, 'bundle exec'
+
 env :PATH, ENV['PATH']
 set :job_template, nil
 job_type :runner,  "bash -l -c cd :path && :bundle_command bin/rails runner -e :environment ':task' :output"
@@ -29,7 +30,7 @@ job_type :runner,  "bash -l -c cd :path && :bundle_command bin/rails runner -e :
 set :output, "log/cron_log.log"
 # env :PATH, ENV['PATH']
 set :environment, "development"
+
 every 2.minutes do
   runner "Advertisement.remove_expired_ads"
- 
 end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to advertisements_url
    else
-      redirect_to sessions_new_url, notice: 'User not found. Please try again.'
+      redirect_to login_url, notice: 'Login failed. Please try again.'
    end
   end
 

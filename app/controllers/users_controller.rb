@@ -15,28 +15,28 @@ class UsersController < ApplicationController
   def create
     # respond_to :html, :json
     @user = User.new(user_params) 
-    # respond_to do |format|
-      if @user.valid?
+    respond_to do |format|
+      if @user.save
         username = user_params[:username]
         # if User.username_not_exists?(username: username)
-          if @user.save 
+          # if @user.save 
             session[:user_id] = @user.id 
             
             # In the real world project I'm going to retrieve the store name and id using 'shops' Shopify API. 
             # In that case there is no need to create a table for the stores as well as users.
             Store.create(:title => @user.username, :user_id => @user.id)
-            redirect_to advertisements_url, notice: 'You signed up and logged in successfully'
-          else
-            redirect_to users_new_url, notice: 'Something went wrong. Please try again.'
-          end
+            format.html { redirect_to advertisements_url, notice: 'You signed up and logged in successfully' }
+          # else
+          #   format.html { redirect_to new_user_url, notice: 'Something went wrong. Please try again.' }
+          # end
         # else
         #   redirect_to users_new_url, notice: 'The user name already exists.'
         # end
       else
-        render 'new'
+        format.html { render 'new' }
         # redirect_to users_new_url(@user), :flash => { :error => @user.errors.full_messages.join(', ') }
       end
-    # end #respond_to
+    end
   end
 
   def destroy
@@ -55,5 +55,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password);
     end
-
 end

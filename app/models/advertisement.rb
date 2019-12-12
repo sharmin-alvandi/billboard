@@ -16,7 +16,12 @@ class Advertisement < ApplicationRecord
 
    def self.remove_expired_ads
       # Advertisement.destroy_by('expiration_date <= ?', Date.today)
-       Advertisement.destroy_by(description: 'del')
+      if destroyed_records = Advertisement.destroy_by(description: 'del')
+        puts "****************** SUCCESSFUL! ****************"
+        puts "destroyed record with id: #{destroyed_records.map(&:id)}"
+      else
+        puts "****************** FAILED! ****************"
+      end
    end
 
    def effective_date_cannot_be_in_the_past
