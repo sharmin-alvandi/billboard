@@ -3,7 +3,8 @@ class CreateAdvertisements < ActiveRecord::Migration[6.0]
 
     create_table :stores do |t|
       t.string :title
-      t.integer :user_id
+      # t.integer :user_id
+      t.belongs_to :user, index: true
 
       t.timestamps
     end

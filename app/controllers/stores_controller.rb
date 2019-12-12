@@ -15,6 +15,7 @@ class StoresController < ApplicationController
   # GET /stores/new
   def new
     @store = Store.new
+    # @user = User.find_by(id: session[:user_id]) 
   end
 
   # GET /stores/1/edit

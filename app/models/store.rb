@@ -1,4 +1,5 @@
 class Store < ApplicationRecord
+  belongs_to :user
   has_many :advertisements
   before_destroy :ensure_not_referenced_by_any_advertisement
 

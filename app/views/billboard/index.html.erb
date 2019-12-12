@@ -1,104 +1,37 @@
 
 <p id="notice" class="text-danger"><%= notice %></p>
 <h1 class="text-center mb-5">Shopify Centeral Discount Billboard</h1>
-<!--<header>
-  
-
-  <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>-->
-
-
-
-
-
-  <!-- <nav>
-    <ul>
-      <li><%= link_to 'Admins', advertisements_path %></li>
-      <li>
-        <%= form_with(url: billboard_index_path, method: "get", local: true) do |form| %>
-          <ul>
-            <li>
-            </li>
-            <li>
-              <%= form.collection_select(:collection_id, Collection.all, :id, :title, { prompt: 'All Collections' } ) %>
-              <%= form.submit "search" %>
-            </li>
-      </ul>
-          
-        <% end %>
-      </li>
-    </ul>
-  </nav>-->
-
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" href="#">logo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to 'Admins', advertisements_path, :class => 'nav-link' %>
-      </li>
-      <li class="nav-item">
-      </li>
-    </ul>
-     <%= form_with(url: billboard_index_path, method: "get", :class => 'form-inline my-2 my-lg-0', local: true) do |form| %>
-       <%= form.collection_select(:collection_id, Collection.all, :id, :title, { prompt: 'All Collections' }, class: 'form-control mr-sm-2' ) %>
-       
-       <%= form.submit "search", :class => 'btn btn-outline-success my-2 my-sm-0' %>
-    <% end %>
-  </div>
-</nav>
-
-</header>-->
-
-<!-- <div class="container" id="main"> -->
-  <div class="row card-deck">
-    <% @advertisements.each do |advertisement| %>
-      <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today%>
-      <div class="col-sm-12 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="text-center">
-            <%= image_tag(advertisement.image_url, width:'100%', height:'auto', alt: "Ad Image", :class => 'card-image-top')%>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">
-              <%= advertisement.title%>
-            </h5>
-            <div class="card-text">
-              <p class="truncate"><%= advertisement.description %></p>
-              <p class="text-center">
-                <a class="btn btn-success" href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a>
-              </p>
-            </div>
-          </div>
-          <div class="card-footer text-muted">
-            <small>
-              <% @store = Store.find(advertisement.store_id)%>
-              <%= @store.title %>
-            </small>
-            <small class="d-inline-block">
-              Expiry:
-              <%= advertisement.expiration_date.strftime('%Y-%m-%d')%>
-              <!--<% @collection = Collection.find(advertisement.collection_id)%>
-              <%= @collection.title %>-->
-            </small>
+<div class="row card-deck">
+  <% @advertisements.each do |advertisement| %>
+    <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today%>
+    <div class="col-sm-12 col-md-4 col-lg-3">
+      <div class="card">
+        <div class="text-center">
+          <%= image_tag(advertisement.image_url, alt: "Ad Image", class: 'card-image-top img-fluid')%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            <%= advertisement.title%>
+          </h5>
+          <div class="card-text">
+            <p class="truncate"><%= advertisement.description %></p>
+            <p class="text-center">
+              <a class="btn btn-success" href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a>
+            </p>
           </div>
         </div>
+        <div class="card-footer text-muted">
+          <small>
+            <% @store = Store.find(advertisement.store_id)%>
+            <%= @store.title %>
+          </small>
+          <small class="d-inline-block">
+            Expiry:
+            <%= advertisement.expiration_date.strftime('%Y-%m-%d')%>
+          </small>
+        </div>
       </div>
-      <% end %>
+    </div>
     <% end %>
-  </div>
-<!--</div>-->
-  <!--</tbody>
-</table>-->
+  <% end %>
+</div>

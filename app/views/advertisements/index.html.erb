@@ -1,26 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1 class="text-center mb-5">Advertisements</h1>
-
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-  <%= link_to 'logo', billboard_index_path, :class => 'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to 'Home', billboard_index_path, :class => 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'New Advertisement', new_advertisement_path, :class => 'nav-link' %>
-      </li>
-    </ul>
-  </div>
-</nav>-->
-
-
 <table class="table table-responsive text-center">
   <thead class="thead-light">
     <tr>
@@ -32,7 +12,7 @@
       <th scope="col">Effective</th>
       <th scope="col">Expiration</th>
       <th scope="col">Collection</th>
-      <th scope="col" colspan="3"></th>
+      <th scope="col">colspan="3"></th>
       
     </tr>
   </thead>
@@ -40,20 +20,16 @@
   <tbody>
     <% @advertisements.each do |advertisement| %>
       <tr>
-        <td><%= image_tag(advertisement.image_url, size: "160x100", alt: "Ad Image")%></td>
+        <td><%= image_tag(advertisement.image_url, alt: 'Ad Image', class: 'img-fluid')%></td>
         <td><%= advertisement.title %></td>
         <% @store = Store.find(advertisement.store_id)%>
         <td><%= @store.title %></td>
-        <!--<td><a class="alert-link" href="<%= advertisement.product_url %>" target="_blank">SHOP NOW</a></td>-->
         <td><%= advertisement.description %></td>
         <td><%= advertisement.effective_date.strftime('%Y-%m-%d') %></td>
         <td><%= advertisement.expiration_date.strftime('%Y-%m-%d') %></td>
         <% @collection = Collection.find(advertisement.collection_id)%>
         <td><%= @collection.title %></td>
-        
         <td><%= link_to 'Show', advertisement, :class => 'btn btn-success' %></td>
-        <!--<td><%= link_to 'Edit', edit_advertisement_path(advertisement), :class => 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', advertisement, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>-->
       </tr>
     <% end %>
   </tbody>

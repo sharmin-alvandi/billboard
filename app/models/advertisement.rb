@@ -16,7 +16,6 @@ class Advertisement < ApplicationRecord
 
    def self.remove_expired_ads
       # Advertisement.destroy_by('expiration_date <= ?', Date.today)
-      puts "*************************"
        Advertisement.destroy_by(description: 'del')
    end
 

@@ -8,7 +8,9 @@ class AdvertisementsController < ApplicationController
   def index
     
     
-      @advertisements = Advertisement.all
+      # @advertisements = Advertisement.all
+      @store = Store.find_by('user_id = ?', current_user.id)
+      @advertisements = Advertisement.where('store_id = ?', @store.id)
     
       
     
@@ -23,10 +25,12 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements/new
   def new
     @advertisement = Advertisement.new
+    @store = Store.find_by('user_id = ?', current_user.id)
   end
 
   # GET /advertisements/1/edit
   def edit
+    @store = Store.find_by('user_id = ?', current_user.id)
   end
 
   # POST /advertisements
