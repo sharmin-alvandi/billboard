@@ -31,6 +31,6 @@ set :output, "log/cron_log.log"
 # env :PATH, ENV['PATH']
 set :environment, "development"
 
-every 2.minutes do
+every 1.day, at: '00:01 am' do
   runner "Advertisement.remove_expired_ads"
 end
