@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
+  #While I refreshed the signup page with validity errors, I used to get the following error:
+  #ActionController::InvalidAuthenticityToken in UsersController#create
+  #Based on my research, I found out adding the line below is going to prevent that error.
+  protect_from_forgery
 
   def new
     if !logged_in?

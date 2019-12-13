@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to 'Logout', logout_url, method: :delete, class: 'nav-link' %>
-              <% elsif !current_page?(login_url) && !current_page?(new_user_url) %>
+              <% elsif !current_page?(login_url) && !current_page?(signup_url) %>
                   <%= link_to 'Advertisements', advertisements_url, class: 'nav-link' %>
                   </li>
                   <li class="nav-item">
