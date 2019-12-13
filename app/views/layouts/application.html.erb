@@ -5,10 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <!-- <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>-->
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true%>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 
@@ -22,6 +19,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to 'Home', billboard_index_url, class: 'nav-link' %>
+            </li>
             <li class="nav-item">
               <% if current_page?(billboard_index_url) || current_page?(root_url) %>
                 <% if !logged_in? %>
@@ -48,10 +48,10 @@
               <li class="nav-item"><span class="nav-link text-success"><%= current_user.username %></span></li>
             <% end %>
           </ul>
-          <% if current_page?(billboard_index_url) %>
+          <% if current_page?(billboard_index_url) || current_page?(root_url)%>
             <%= form_with(url: billboard_index_url, method: "get", class: 'form-inline my-2 my-lg-0', local: true) do |form| %>
               <%= form.collection_select(:collection_id, Collection.all, :id, :title, { prompt: 'All Collections' }, class: 'form-control mr-sm-2' ) %>
-              <%= form.submit "search", :class => 'btn btn-outline-success my-2 my-sm-0' %>
+              <%= form.submit "search", class: 'btn btn-outline-success my-2 my-sm-0' %>
             <% end %>
           <% end %>
         </div>

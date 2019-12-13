@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   skip_before_action :authorized, only: [:new, :create, :welcome]
 
   def new
@@ -18,12 +17,8 @@ class SessionsController < ApplicationController
   def login
   end
 
-  # def welcome
-  # end
-
   def destroy
     session[:user_id] = nil
     redirect_to billboard_index_url, notice: 'You logged out successfully!'
   end
-
 end

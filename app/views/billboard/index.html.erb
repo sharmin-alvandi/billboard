@@ -3,15 +3,15 @@
 <h1 class="text-center mb-5">Shopify Centeral Discount Billboard</h1>
 <div class="row card-deck">
   <% @advertisements.each do |advertisement| %>
-    <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today%>
+    <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today %>
     <div class="col-sm-12 col-md-4 col-lg-3">
       <div class="card">
         <div class="text-center">
-          <%= image_tag(advertisement.image_url, alt: "Ad Image", class: 'card-image-top img-fluid')%>
+          <%= image_tag(advertisement.image_url, alt: "Ad Image", class: 'card-image-top img-fluid') %>
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">
-            <%= advertisement.title%>
+            <%= advertisement.title %>
           </h5>
           <div class="card-text">
             <p class="truncate"><%= advertisement.description %></p>
@@ -23,13 +23,13 @@
         <div class="card-footer text-muted">
           <small>
           <p>
-            <% @store = Store.find(advertisement.store_id)%>
+            <% @store = Store.find(advertisement.store_id) %>
             <%= @store.title %>
           </p>
           </small>
           <small class="d-inline-block">
             Expiry:
-            <%= advertisement.expiration_date.strftime('%Y-%m-%d')%>
+            <%= advertisement.expiration_date.strftime('%Y-%m-%d') %>
           </small>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="text-danger"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
@@ -42,10 +42,7 @@
   <% id = @advertisement.collection_id%>
   <% @collection = Collection.find(id)%>
   <%= @collection.title %>
- 
 </p>
 
 <%= link_to 'Edit', edit_advertisement_path(@advertisement), class: 'btn btn-warning' %>
 <%= link_to 'Destroy', @advertisement, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
-<!--<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
-<%= link_to 'Back', advertisements_path %>-->

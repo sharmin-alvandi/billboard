@@ -36,7 +36,6 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements/1/edit
   def edit
     @store = Store.find_by('user_id = ?', current_user.id)
-    puts "#{@store.id}@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
   end
 
   # POST /advertisements
