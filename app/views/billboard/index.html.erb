@@ -22,8 +22,10 @@
         </div>
         <div class="card-footer text-muted">
           <small>
+          <p>
             <% @store = Store.find(advertisement.store_id)%>
             <%= @store.title %>
+          </p>
           </small>
           <small class="d-inline-block">
             Expiry:

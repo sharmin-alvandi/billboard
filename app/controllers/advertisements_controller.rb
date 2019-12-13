@@ -26,11 +26,17 @@ class AdvertisementsController < ApplicationController
   def new
     @advertisement = Advertisement.new
     @store = Store.find_by('user_id = ?', current_user.id)
+    store_id = @store.id
+    # Each store are not allowed to add more than 3 active(not expired) ads.
+    if Advertisement.max_ads_reached?(store_id: store_id)
+      redirect_to advertisements_url, notice: 'The store has already reached the maximum number of ads.'
+    end
   end
 
   # GET /advertisements/1/edit
   def edit
     @store = Store.find_by('user_id = ?', current_user.id)
+    puts "#{@store.id}@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
   end
 
   # POST /advertisements
@@ -45,15 +51,15 @@ class AdvertisementsController < ApplicationController
     # count = @advertisements.count
     
       respond_to do |format|
-        # Each store are not allowed to add more than 3 active(not expired) ads.
-        if Advertisement.max_ads_reached?(store_id: store_id)
+        
+        # if Advertisement.max_ads_reached?(store_id: store_id)
           # @store_id = advertisement_params[:store_id]
           # @advertisements2 = Advertisement.where("store_id = ?", @store_id)
-          format.html { redirect_to search_store_advertisements_url(store_id: store_id), notice: 'The store has already reached the maximum number of ads.' }
+          # format.html { redirect_to search_store_advertisements_url(store_id: store_id), notice: 'The store has already reached the maximum number of ads.' }
           # format.html { redirect_to billboard_index_url, notice: 'The store has already reached the maximum number of ads'}
-          format.json { head :no_content }
+          # format.json { head :no_content }
           # return
-        else
+        # else
           @advertisement = Advertisement.new(advertisement_params)
 
           if !@advertisement.valid?
@@ -68,7 +74,7 @@ class AdvertisementsController < ApplicationController
               format.json { render json: @advertisement.errors, status: :unprocessable_entity }
             end
           end
-        end
+        # end
       end
     end
 
@@ -96,17 +102,9 @@ class AdvertisementsController < ApplicationController
     end
   end
 
-  def search_store
-    # puts "********************************storeidbefore  #{store_id}"
-    #  @store_id = advertisement_params[:store_id]
-
-    @advertisements = Advertisement.where("store_id = ?", params[:store_id])
-    # puts "*********************#{$store_id}"
-    
-    # @count = @advertisements.count
-    
-    # redirect_to store_ads_url, notice: 'More than three ads are not allowed.'+count.to_s 
-  end
+  # def search_store
+    # @advertisements = Advertisement.where("store_id = ?", params[:store_id])
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

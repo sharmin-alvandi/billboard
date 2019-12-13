@@ -1,39 +1,40 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="text-danger"><%= notice %></p>
 
 <h1 class="text-center mb-5">Advertisements</h1>
-<table class="table table-responsive text-center">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Title</th>
-      <th scope="col">Store</th>
-     <!-- <th scope="col">link</th> -->
-      <th scope="col">Description</th>
-      <th scope="col">Effective</th>
-      <th scope="col">Expiration</th>
-      <th scope="col">Collection</th>
-      <th scope="col" colspan="3"></th>
-      
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @advertisements.each do |advertisement| %>
-      <tr>
-        <td><%= image_tag(advertisement.image_url, alt: 'Ad Image', class: 'img-fluid')%></td>
-        <td><%= advertisement.title %></td>
-        <% @store = Store.find(advertisement.store_id)%>
-        <td><%= @store.title %></td>
-        <td><%= advertisement.description %></td>
-        <td><%= advertisement.effective_date.strftime('%Y-%m-%d') %></td>
-        <td><%= advertisement.expiration_date.strftime('%Y-%m-%d') %></td>
-        <% @collection = Collection.find(advertisement.collection_id)%>
-        <td><%= @collection.title %></td>
-        <td><%= link_to 'Show', advertisement, :class => 'btn btn-success' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <table class="table table-responsive text-center">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Title</th>
+          <!--<th scope="col">Store</th>-->
+          <th scope="col">Description</th>
+          <th scope="col">Effective</th>
+          <th scope="col">Expiration</th>
+          <!--<th scope="col">Collection</th>-->
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @advertisements.each do |advertisement| %>
+          <tr>
+            <td><%= image_tag(advertisement.image_url, size: '160x100', alt: 'Ad Image', class: 'img-fluid')%></td>
+            <td><%= advertisement.title %></td>
+            <% @store = Store.find(advertisement.store_id)%>
+            <!--<td><%= @store.title %></td>-->
+            <td><%= advertisement.description %></td>
+            <td><%= advertisement.effective_date.strftime('%Y-%m-%d') %></td>
+            <td><%= advertisement.expiration_date.strftime('%Y-%m-%d') %></td>
+            <!--<% @collection = Collection.find(advertisement.collection_id)%>
+            <td><%= @collection.title %></td>-->
+            <td><%= link_to 'More...', advertisement, class: 'btn btn-success' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
 
