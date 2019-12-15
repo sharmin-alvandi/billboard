@@ -1,6 +1,6 @@
-# README
+# Shopify Central Discount Billboard App
 
-Shopify Central Discount Billboard App
+
 
  A billboard for Shopify Merchants to post their discounted products and special offers.
 
