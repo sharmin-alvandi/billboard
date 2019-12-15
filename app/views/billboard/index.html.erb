@@ -1,13 +1,13 @@
 
 <p id="notice" class="text-danger"><%= notice %></p>
-<h1 class="text-center mb-5">Shopify Centeral Discount Billboard</h1>
+<h1 class="text-center mb-5">Shopify Central Discount Billboard</h1>
 <div class="row card-deck">
   <% @advertisements.each do |advertisement| %>
     <% if advertisement.effective_date <= Date.today && advertisement.expiration_date >= Date.today %>
     <div class="col-sm-12 col-md-4 col-lg-3">
-      <div class="card">
+      <div class="card mb-5">
         <div class="text-center">
-          <%= image_tag(advertisement.image_url, alt: "Ad Image", class: 'card-image-top img-fluid') %>
+          <%= image_tag(advertisement.image_url, alt: 'Ad Image', class: 'card-image-top img-fluid') %>
         </div>
         <div class="card-body">
           <h5 class="card-title text-center">
