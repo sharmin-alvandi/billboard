@@ -1,11 +1,20 @@
 class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  #before_action :count_ads, only: [:create]
  
+
   # GET /advertisements
   # GET /advertisements.json
   def index
+    
+    
+      # @advertisements = Advertisement.all
       @store = Store.find_by('user_id = ?', current_user.id)
-      @advertisements = Advertisement.where('store_id = ?', @store.id)  
+      @advertisements = Advertisement.where('store_id = ?', @store.id)
+    
+      
+    
+    # @advertisements = Advertisement.all unless defined? @store_id
   end
 
   # GET /advertisements/1
@@ -32,22 +41,41 @@ class AdvertisementsController < ApplicationController
   # POST /advertisements
   # POST /advertisements.json
   def create
+    
     store_id = advertisement_params[:store_id]
-    respond_to do |format|
-      @advertisement = Advertisement.new(advertisement_params)
-      if !@advertisement.valid?
-        format.html { render 'new'}
-      else
-        if @advertisement.save
-          format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.'}
-          format.json { render :show, status: :created, location: @advertisement }
-        else
-          format.html { render :new }
-          format.json { render json: @advertisement.errors, status: :unprocessable_entity }
-        end
+
+    # @advertisements = Advertisement.where("store_id = ?", store_id)
+    # count = @advertisements.count
+    # @count = search_store(store_id)
+    # count = @advertisements.count
+    
+      respond_to do |format|
+        
+        # if Advertisement.max_ads_reached?(store_id: store_id)
+          # @store_id = advertisement_params[:store_id]
+          # @advertisements2 = Advertisement.where("store_id = ?", @store_id)
+          # format.html { redirect_to search_store_advertisements_url(store_id: store_id), notice: 'The store has already reached the maximum number of ads.' }
+          # format.html { redirect_to billboard_index_url, notice: 'The store has already reached the maximum number of ads'}
+          # format.json { head :no_content }
+          # return
+        # else
+          @advertisement = Advertisement.new(advertisement_params)
+
+          if !@advertisement.valid?
+            format.html { render 'new'}
+            # format.html { redirect_to @advertisement, notice: @advertisement.errors.messages }
+          else
+            if @advertisement.save
+              format.html { redirect_to @advertisement, notice: 'Advertisement was successfully created.'}
+              format.json { render :show, status: :created, location: @advertisement }
+            else
+              format.html { render :new }
+              format.json { render json: @advertisement.errors, status: :unprocessable_entity }
+            end
+          end
+        # end
       end
     end
-  end
 
   # PATCH/PUT /advertisements/1
   # PATCH/PUT /advertisements/1.json
@@ -72,6 +100,10 @@ class AdvertisementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # def search_store
+    # @advertisements = Advertisement.where("store_id = ?", params[:store_id])
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
