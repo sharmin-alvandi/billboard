@@ -66,3 +66,5 @@ gem 'bootstrap-datepicker-rails'
 gem 'whenever', require: false
 
 gem 'bcrypt'
+
+gem 'pry'
