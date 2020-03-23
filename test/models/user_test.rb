@@ -15,9 +15,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(user.errors.messages, username: ["has already been taken"])
   end
 
-  test "password length must be more than 5 characters" do
+  test "password length must not be less than 5 characters" do
     user = User.new(username: "testuser", password: "1234")
     refute user.save
-    assert_equal(user.errors.messages, password: ["must be at least 5 characters"])
+    assert_includes user.errors.full_messages, "Password must be at least 5 characters"
   end
 end
