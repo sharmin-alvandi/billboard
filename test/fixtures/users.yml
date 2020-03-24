@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: MyString
-  password_digest: MyString
+valid:
+  username: firstuser
+  password_digest: 12345
 
-two:
-  username: MyString
-  password_digest: MyString
+invalid_username:
+  username: nil
+  password_digest: 543210
+
+invalid_password:
+  username: seconduser
+  password_digest: 123
