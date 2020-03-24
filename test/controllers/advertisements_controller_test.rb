@@ -2,8 +2,33 @@ require 'test_helper'
 
 class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @advertisement = advertisements(:one)
+    @advertisement1 = advertisements(:one)
+    @advertisement2 = advertisements(:two)
+    @advertisement3 = advertisements(:three)
+    @advertisement4 = advertisements(:four)
   end
+
+  # each store belongs to one user
+  test "each store has up to three advertisements" do
+    @advertisement1.save
+    @advertisement2.save
+    @advertisement3.save
+    post advertisements_url, params: { 
+      advertisement: { 
+        collection_id: @advertisement4.collection_id, 
+        description: @advertisement4.description, 
+        image_url: @advertisement4.image_url, 
+        product_url: @advertisement4.product_url, 
+        store_id: @advertisement4.store_id, 
+        title: @advertisement4.title 
+      } 
+    }
+    assert_redirected_to advertisements_url
+    assert_equal flash[:notice], 'The store has already reached the maximum number of ads.'
+  end
+
+  # each user has only one store
+  # each store has up to three advertisements
 
   test "should get index" do
     get advertisements_url
