@@ -6,19 +6,15 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     @advertisement2 = advertisements(:two)
     @advertisement3 = advertisements(:three)
     @advertisement4 = advertisements(:four)
+    sign_in
     
   end
 
   # each store belongs to one user
   test "each store has up to three advertisements" do
     @user = users(:valid)
-    @user.save
     @store = stores(:one)
-    @store.save
-    sign_in
-    @advertisement1.save
-    @advertisement2.save
-    @advertisement3.save
+    # sign_in
     get new_advertisement_url, params: { 
       advertisement: { 
         collection_id: @advertisement4.collection_id, 
@@ -48,31 +44,44 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create advertisement" do
+    
+    Advertisement.destroy_all
     assert_difference('Advertisement.count') do
-      post advertisements_url, params: { advertisement: { collection_id: @advertisement.collection_id, description: @advertisement.description, image_url: @advertisement.image_url, product_url: @advertisement.product_url, store_id: @advertisement.store_id, title: @advertisement.title } }
+      post advertisements_url, params: { 
+        advertisement: { 
+          collection_id: @advertisement1.collection_id, 
+          description: @advertisement1.description, 
+          image_url: @advertisement1.image_url, 
+          product_url: @advertisement1.product_url, 
+          store_id: @advertisement1.store_id, 
+          title: @advertisement1.title,
+          effective_date: @advertisement1.effective_date,
+          expiration_date: @advertisement1.expiration_date
+        }
+     }
     end
 
     assert_redirected_to advertisement_url(Advertisement.last)
   end
 
   test "should show advertisement" do
-    get advertisement_url(@advertisement)
+    get advertisement_url(@advertisement1)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_advertisement_url(@advertisement)
+    get edit_advertisement_url(@advertisement1)
     assert_response :success
   end
 
   test "should update advertisement" do
-    patch advertisement_url(@advertisement), params: { advertisement: { collection_id: @advertisement.collection_id, description: @advertisement.description, image_url: @advertisement.image_url, product_url: @advertisement.product_url, store_id: @advertisement.store_id, title: @advertisement.title } }
-    assert_redirected_to advertisement_url(@advertisement)
+    patch advertisement_url(@advertisement1), params: { advertisement: { collection_id: @advertisement1.collection_id, description: @advertisement.description, image_url: @advertisement.image_url, product_url: @advertisement.product_url, store_id: @advertisement.store_id, title: @advertisement.title } }
+    assert_redirected_to advertisement_url(@advertisement1)
   end
 
   test "should destroy advertisement" do
     assert_difference('Advertisement.count', -1) do
-      delete advertisement_url(@advertisement)
+      delete advertisement_url(@advertisement1)
     end
 
     assert_redirected_to advertisements_url

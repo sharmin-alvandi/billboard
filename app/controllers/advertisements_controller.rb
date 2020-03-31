@@ -49,7 +49,7 @@ class AdvertisementsController < ApplicationController
     # count = @advertisements.count
     
       respond_to do |format|
-        
+        # binding.pry
         # if Advertisement.max_ads_reached?(store_id: store_id)
           # @store_id = advertisement_params[:store_id]
           # @advertisements2 = Advertisement.where("store_id = ?", @store_id)
