@@ -68,3 +68,4 @@ gem 'whenever', require: false
 gem 'bcrypt'
 
 gem 'pry'
+gem 'pry-byebug'
