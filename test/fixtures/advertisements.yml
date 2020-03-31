@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   title: MyString
   store_id: 1
   product_url: MyString
@@ -9,25 +10,34 @@ one:
   collection_id: 1
 
 two:
+  id: 2
   title: MyString
   store_id: 1
   product_url: MyString
   description: MyString
   image_url: MyString
   collection_id: 1
+  effective_date: '2020-03-25'
+  expiration_date: '2020-03-26'
 
 three:
+  id: 3
   title: MyString
   store_id: 1
   product_url: MyString
   description: MyString
   image_url: MyString
   collection_id: 1
+  effective_date: '2020-03-25'
+  expiration_date: '2020-03-26'
 
 four:
+  id: 4
   title: MyString
   store_id: 1
   product_url: MyString
   description: MyString
   image_url: MyString
   collection_id: 1
+  effective_date: '2020-03-25'
+  expiration_date: '2020-03-26'

@@ -1,13 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 valid:
+  id: 1
   username: firstuser
-  password_digest: 12345
-
+  password_digest: $2a$12$jD7wVCnnyCh2aPawUFAP0ul0xEOb7kicYHtPZaawyJZOh1h5QxvtC
+                   
 invalid_username:
+  id: 2
   username: nil
   password_digest: 543210
 
 invalid_password:
+  id: 3
   username: seconduser
   password_digest: 123

@@ -7,7 +7,6 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements.json
   def index
     
-    
       # @advertisements = Advertisement.all
       @store = Store.find_by('user_id = ?', current_user.id)
       @advertisements = Advertisement.where('store_id = ?', @store.id)
@@ -60,7 +59,6 @@ class AdvertisementsController < ApplicationController
           # return
         # else
           @advertisement = Advertisement.new(advertisement_params)
-
           if !@advertisement.valid?
             format.html { render 'new'}
             # format.html { redirect_to @advertisement, notice: @advertisement.errors.messages }

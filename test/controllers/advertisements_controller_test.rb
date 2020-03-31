@@ -6,14 +6,20 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     @advertisement2 = advertisements(:two)
     @advertisement3 = advertisements(:three)
     @advertisement4 = advertisements(:four)
+    
   end
 
   # each store belongs to one user
   test "each store has up to three advertisements" do
+    @user = users(:valid)
+    @user.save
+    @store = stores(:one)
+    @store.save
+    sign_in
     @advertisement1.save
     @advertisement2.save
     @advertisement3.save
-    post advertisements_url, params: { 
+    get new_advertisement_url, params: { 
       advertisement: { 
         collection_id: @advertisement4.collection_id, 
         description: @advertisement4.description, 
@@ -23,6 +29,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
         title: @advertisement4.title 
       } 
     }
+    
     assert_redirected_to advertisements_url
     assert_equal flash[:notice], 'The store has already reached the maximum number of ads.'
   end
@@ -69,5 +76,9 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to advertisements_url
+  end
+
+  def sign_in
+    post login_url, params: { username: 'firstuser', password: 'password' }
   end
 end
