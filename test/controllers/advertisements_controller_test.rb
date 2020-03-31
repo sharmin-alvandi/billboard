@@ -3,9 +3,6 @@ require 'test_helper'
 class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @advertisement1 = advertisements(:one)
-    @advertisement2 = advertisements(:two)
-    @advertisement3 = advertisements(:three)
-    @advertisement4 = advertisements(:four)
     sign_in
     
   end
@@ -14,15 +11,16 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   test "each store has up to three advertisements" do
     @user = users(:valid)
     @store = stores(:one)
-    # sign_in
     get new_advertisement_url, params: { 
       advertisement: { 
-        collection_id: @advertisement4.collection_id, 
-        description: @advertisement4.description, 
-        image_url: @advertisement4.image_url, 
-        product_url: @advertisement4.product_url, 
-        store_id: @advertisement4.store_id, 
-        title: @advertisement4.title 
+        collection_id: @advertisement1.collection_id, 
+        description: @advertisement1.description, 
+        image_url: @advertisement1.image_url, 
+        product_url: @advertisement1.product_url, 
+        store_id: @advertisement1.store_id, 
+        title: @advertisement1.title, 
+        effective_date: @advertisement1.effective_date,
+        expiration_date: @advertisement1.expiration_date
       } 
     }
     
@@ -39,6 +37,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    Advertisement.destroy_all
     get new_advertisement_url
     assert_response :success
   end
@@ -75,7 +74,16 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update advertisement" do
-    patch advertisement_url(@advertisement1), params: { advertisement: { collection_id: @advertisement1.collection_id, description: @advertisement.description, image_url: @advertisement.image_url, product_url: @advertisement.product_url, store_id: @advertisement.store_id, title: @advertisement.title } }
+    patch advertisement_url(@advertisement1), params: { 
+      advertisement: { 
+        collection_id: @advertisement1.collection_id, 
+        description: @advertisement1.description, 
+        image_url: @advertisement1.image_url, 
+        product_url: @advertisement1.product_url, 
+        store_id: @advertisement1.store_id, 
+        title: @advertisement1.title
+      } 
+    }
     assert_redirected_to advertisement_url(@advertisement1)
   end
 

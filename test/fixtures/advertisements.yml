@@ -6,7 +6,7 @@ one:
   store_id: 1
   product_url: MyString
   description: MyString
-  image_url: MyString
+  image_url: coat.jpg
   collection_id: 1
   effective_date: '2020-04-25'
   expiration_date: '2020-04-26'
@@ -17,7 +17,7 @@ two:
   store_id: 1
   product_url: MyString
   description: MyString
-  image_url: MyString
+  image_url: furn.jpg
   collection_id: 1
   effective_date: '2020-04-25'
   expiration_date: '2020-04-26'
@@ -28,7 +28,7 @@ three:
   store_id: 1
   product_url: MyString
   description: MyString
-  image_url: MyString
+  image_url: office.jpg
   collection_id: 1
   effective_date: '2020-04-25'
   expiration_date: '2020-04-26'
@@ -39,7 +39,7 @@ four:
   store_id: 2
   product_url: MyString
   description: MyString
-  image_url: MyString
+  image_url: sofa.jpeg
   collection_id: 1
   effective_date: '2020-04-25'
   expiration_date: '2020-04-26'
