@@ -14,7 +14,7 @@ one:
 two:
   id: 2
   title: MyString
-  store_id: 1
+  store_id: 3
   product_url: MyString
   description: MyString
   image_url: furn.jpg
@@ -25,7 +25,7 @@ two:
 three:
   id: 3
   title: MyString
-  store_id: 1
+  store_id: 3
   product_url: MyString
   description: MyString
   image_url: office.jpg
@@ -35,6 +35,17 @@ three:
 
 four:
   id: 4
+  title: MyString
+  store_id: 3
+  product_url: MyString
+  description: MyString
+  image_url: office.jpg
+  collection_id: 1
+  effective_date: '2020-04-25'
+  expiration_date: '2020-04-26'
+
+five:
+  id: 5
   title: MyString
   store_id: 2
   product_url: MyString

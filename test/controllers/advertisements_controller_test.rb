@@ -3,14 +3,16 @@ require 'test_helper'
 class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @advertisement1 = advertisements(:one)
-    sign_in
+    
     
   end
 
   # each store belongs to one user
   test "each store has up to three advertisements" do
-    @user = users(:valid)
-    @store = stores(:one)
+    @user = users(:valid_with_three_ads)
+    sign_in(@user.username, '12345678')
+    @store = stores(:with_three_ads)
+
     get new_advertisement_url, params: { 
       advertisement: { 
         collection_id: @advertisement1.collection_id, 
@@ -32,19 +34,22 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   # each store has up to three advertisements
 
   test "should get index" do
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     get advertisements_url
     assert_response :success
   end
 
   test "should get new" do
-    Advertisement.destroy_all
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     get new_advertisement_url
     assert_response :success
   end
 
   test "should create advertisement" do
-    
-    Advertisement.destroy_all
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     assert_difference('Advertisement.count') do
       post advertisements_url, params: { 
         advertisement: { 
@@ -64,16 +69,22 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show advertisement" do
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     get advertisement_url(@advertisement1)
     assert_response :success
   end
 
   test "should get edit" do
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     get edit_advertisement_url(@advertisement1)
     assert_response :success
   end
 
   test "should update advertisement" do
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     patch advertisement_url(@advertisement1), params: { 
       advertisement: { 
         collection_id: @advertisement1.collection_id, 
@@ -88,6 +99,8 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy advertisement" do
+    @user = users(:valid)
+    sign_in(@user.username, 'password')
     assert_difference('Advertisement.count', -1) do
       delete advertisement_url(@advertisement1)
     end
@@ -95,7 +108,24 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to advertisements_url
   end
 
-  def sign_in
-    post login_url, params: { username: 'firstuser', password: 'password' }
+  def sign_in(username, password)
+    post login_url, params: { username: username, password: password }
   end
+
+    # private
+    #  def create_ad (number, params = {})
+    #   ad_params = {
+    #     id: number,
+    #     title: "Title #{number}",
+    #     store_id: 1,
+    #     product_url: "URL #{number}",
+    #     description: "Description #{number}",
+    #     image_url: "coat.jpg",
+    #     collection_id: 1,
+    #     effective_date: '2020-04-25',
+    #     expiration_date: '2020-04-26',
+    #   }
+
+    #   Advertisement.new(ad_params.merge(params)).save
+    #  end
 end

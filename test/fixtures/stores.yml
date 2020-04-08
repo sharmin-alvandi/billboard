@@ -8,4 +8,9 @@ one:
 two:
   id: 2
   title: MyString
-  user_id: 1
+  user_id: 2
+
+with_three_ads:
+  id: 3
+  title: Store with three ads
+  user_id: 4

@@ -3,7 +3,7 @@
 valid:
   id: 1
   username: firstuser
-  password_digest: $2a$12$jD7wVCnnyCh2aPawUFAP0ul0xEOb7kicYHtPZaawyJZOh1h5QxvtC
+  password_digest: $2a$12$jD7wVCnnyCh2aPawUFAP0ul0xEOb7kicYHtPZaawyJZOh1h5QxvtC # password is 'password'
                    
 invalid_username:
   id: 2
@@ -14,3 +14,8 @@ invalid_password:
   id: 3
   username: seconduser
   password_digest: 123
+
+valid_with_three_ads:
+  id: 4
+  username: fourthuser
+  password_digest: $2a$12$XQB1XTCVYz3L7CeyiT1n1ucJ4uAfygEWdB8ehdFYUMbgh2i68nOm. # password is 12345678
